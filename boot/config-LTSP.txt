@@ -22,7 +22,7 @@
 #framebuffer_height=720
 
 # uncomment if hdmi display is not detected and composite is being output
-#hdmi_force_hotplug=1
+hdmi_force_hotplug=1
 
 # uncomment to force a specific HDMI mode (this will force VGA)
 #hdmi_group=1
@@ -49,10 +49,11 @@ start_x=1
 #Comment the line below to disable I2C
 dtparam=i2c_arm=on
 
+#Kernel and initramfs below. Do not comment out or PiNet will not be able to boot.
 [pi1]
-kernel kernel.img-4.1.6+
-initramfs initrd.img-4.1.6+
+kernel kernel.img-4.1.7+
+initramfs initrd.img-4.1.7+
 
 [pi2]
-kernel kernel7.img-4.1.6-v7+
-initramfs initrd.img-4.1.6-v7+
+kernel kernel7.img-4.1.7-v7+
+initramfs initrd.img-4.1.7-v7+

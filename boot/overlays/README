@@ -74,6 +74,10 @@ behaviour. See the list of overlays below for a description of the parameters an
 The Overlay and Parameter Reference
 ===================================
 
+N.B. When editing this file, please preserve the indentation levels to make it simple to parse
+programmatically. NO HARD TABS.
+
+
 Name:   <The base DTB>
 Info:   Configures the base Raspberry Pi hardware
 Load:   <loaded automatically>
@@ -364,6 +368,8 @@ Params: speed                    Display SPI bus speed
 
         fps                      Delay between frame updates
 
+        txbuflen                 Transmit buffer length (default 32768)
+
         debug                    Debug output level {0-7}
 
         xohms                    Touchpanel sensitivity (X-plate resistance)
@@ -451,6 +457,12 @@ Params: pin                      Output pin (default 18) - see table
         clock                    PWM clock frequency (informational)
 
 
+Name:   raspidac3
+Info:   Configures the RaspiDAV Rev.3x audio card
+Load:   dtoverlay=raspidac3
+Params: <None>
+
+
 Name:   rpi-dac
 Info:   Configures the RPi DAC audio card
 Load:   dtoverlay=rpi-dac
@@ -501,6 +513,39 @@ Params: overclock_50             Clock (in MHz) to use when the MMC framework
                                  (default 1)
 
         debug                    Enable debug output (default off)
+
+
+Name:   sdio
+Info:   Selects the bcm2835-sdhost SD/MMC driver, optionally with overclock,
+        and enables SDIO via GPIOs 22-27.
+Load:   dtoverlay=sdio,<param>=<val>
+Params: overclock_50             Clock (in MHz) to use when the MMC framework
+                                 requests 50MHz
+
+        force_pio                Disable DMA support (default off)
+
+        pio_limit                Number of blocks above which to use DMA
+                                 (default 1)
+
+        debug                    Enable debug output (default off)
+
+
+Name:   smi
+Info:   Enables the Secondary Memory Interface peripheral. Uses GPIOs 2-25!
+Load:   dtoverlay=smi
+Params: <None>
+
+
+Name:   smi-dev
+Info:   Enables the userspace interface for the SMI driver
+Load:   dtoverlay=smi-dev
+Params: <None>
+
+
+Name:   smi-nand
+Info:   Enables access to NAND flash via the SMI interface
+Load:   dtoverlay=smi-nand
+Params: <None>
 
 
 Name:   spi-bcm2708

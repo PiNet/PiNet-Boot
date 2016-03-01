@@ -57,3 +57,7 @@ initramfs initrd.img-4.1.18+
 [pi2]
 kernel kernel7.img-4.1.18-v7+
 initramfs initrd.img-4.1.18-v7+
+
+[pi3]
+kernel kernel7.img-4.1.18-v7+
+initramfs initrd.img-4.1.18-v7+

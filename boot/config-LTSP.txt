@@ -51,9 +51,13 @@ dtparam=i2c_arm=on
 
 #Kernel and initramfs below. Do not comment out or PiNet will not be able to boot.
 [pi1]
-kernel kernel.img-4.1.13+
-initramfs initrd.img-4.1.13+
+kernel kernel.img-4.1.19+
+initramfs initrd.img-4.1.19+
 
 [pi2]
-kernel kernel7.img-4.1.13-v7+
-initramfs initrd.img-4.1.13-v7+
+kernel kernel7.img-4.1.19-v7+
+initramfs initrd.img-4.1.19-v7+
+
+[pi3]
+kernel kernel7.img-4.1.19-v7+
+initramfs initrd.img-4.1.19-v7+

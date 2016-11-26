@@ -53,6 +53,7 @@ dtparam=audio=on
 #Kernel and initramfs below. Do not comment out or PiNet will not be able to boot.
 
 
+
 [pi1]
 kernel kernel.img-4.4.32+
 initramfs initrd.img-4.4.32+

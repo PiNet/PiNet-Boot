@@ -274,6 +274,19 @@ Info:   Analog Devices ADV7282M analogue video to CSI2 bridge.
 Load:   dtoverlay=adv7282m,<param>=<val>
 Params: i2c_pins_28_29          Use pins 28&29 for the I2C instead of 44&45.
                                 This is required for Pi B+, 2, 0, and 0W.
+        addr                    Overrides the I2C address (default 0x21)
+
+
+Name:   adv728x-m
+Info:   Analog Devices ADV728[0|1|2]-M analogue video to CSI2 bridges.
+        This is a wrapper for adv7282m, and defaults to ADV7282M.
+Load:   dtoverlay=adv728x-m,<param>=<val>
+Params: i2c_pins_28_29          Use pins 28&29 for the I2C instead of 44&45.
+                                This is required for Pi B+, 2, 0, and 0W.
+        addr                    Overrides the I2C address (default 0x21)
+        adv7280m                Select ADV7280-M.
+        adv7281m                Select ADV7281-M.
+        adv7281ma               Select ADV7281-MA.
 
 
 Name:   akkordion-iqdacplus
@@ -396,6 +409,12 @@ Info:   Configures the audioinjector.net audio add on soundcards
 Load:   dtoverlay=audioinjector-addons,<param>=<val>
 Params: non-stop-clocks         Keeps the clocks running even when the stream
                                 is paused or stopped (default off)
+
+
+Name:   audioinjector-ultra
+Info:   Configures the audioinjector.net ultra soundcard
+Load:   dtoverlay=audioinjector-ultra
+Params: <None>
 
 
 Name:   audioinjector-wm8731-audio
@@ -544,6 +563,14 @@ Load:   dtoverlay=googlevoicehat-soundcard
 Params: <None>
 
 
+Name:   gpio-fan
+Info:   Configure a GPIO pin to control a cooling fan.
+Load:   dtoverlay=gpio-fan,<param>=<val>
+Params: gpiopin                 GPIO used to control the fan (default 12)
+        temp                    Temperature at which the fan switches on, in
+                                millicelcius (default 55000)
+
+
 Name:   gpio-ir
 Info:   Use GPIO pin as rc-core style infrared receiver input. The rc-core-
         based gpio_ir_recv driver maps received keys directly to a
@@ -590,6 +617,15 @@ Params: gpio                    GPIO pin to trigger on (default 3)
                                 (GPIO3) has an external pullup
         label                   Set a label for the key
         keycode                 Set the key code for the button
+
+
+Name:   gpio-no-bank0-irq
+Info:   Use this overlay to disable GPIO interrupts for GPIOs in bank 0 (0-27),
+        which can be useful for UIO drivers.
+        N.B. Using this overlay will trigger a kernel WARN during booting, but
+        this can safely be ignored - the system should work as expected.
+Load:   dtoverlay=gpio-no-bank0-irq
+Params: <None>
 
 
 Name:   gpio-no-irq
@@ -741,6 +777,25 @@ Name:   hy28b
 Info:   HY28B - 2.8" TFT LCD Display Module by HAOYU Electronics
         Default values match Texy's display shield
 Load:   dtoverlay=hy28b,<param>=<val>
+Params: speed                   Display SPI bus speed
+
+        rotate                  Display rotation {0,90,180,270}
+
+        fps                     Delay between frame updates
+
+        debug                   Debug output level {0-7}
+
+        xohms                   Touchpanel sensitivity (X-plate resistance)
+
+        resetgpio               GPIO used to reset controller
+
+        ledgpio                 GPIO used to control backlight
+
+
+Name:   hy28b-2017
+Info:   HY28B 2017 version - 2.8" TFT LCD Display Module by HAOYU Electronics
+        Default values match Texy's display shield
+Load:   dtoverlay=hy28b-2017,<param>=<val>
 Params: speed                   Display SPI bus speed
 
         rotate                  Display rotation {0,90,180,270}
@@ -1256,15 +1311,7 @@ Info:   Omnivision OV5647 camera module.
         Uses Unicam 1, which is the standard camera connector on most Pi
         variants.
 Load:   dtoverlay=ov5647,<param>=<val>
-Params: cam0-pwdn               GPIO used to control the sensor powerdown line.
-
-        cam0-led                GPIO used to control the sensor led
-                                Both these fields should be automatically filled
-                                in by the firmware to reflect the default GPIO
-                                configuration of the particular Pi variant in
-                                use.
-
-        i2c_pins_28_29          Use pins 28&29 for the I2C instead of 44&45.
+Params: i2c_pins_28_29          Use pins 28&29 for the I2C instead of 44&45.
                                 This is required for Pi B+, 2, 0, and 0W.
 
 
@@ -1577,9 +1624,16 @@ Params: touchscreen-size-x      Touchscreen X resolution (default 800)
 
 
 Name:   rpi-poe
-Info:   Raspberry Pi POE HAT
-Load:   dtoverlay=rpi-poe
-Params: <None>
+Info:   Raspberry Pi PoE HAT fan
+Load:   dtoverlay=rpi-poe,<param>[=<val>]
+Params: poe_fan_temp0           Temperature (in millicelcius) at which the fan
+                                turns on (default 50000)
+        poe_fan_temp0_hyst      Temperature delta (in millicelcius) at which
+                                the fan turns off (default 5000)
+        poe_fan_temp1           Temperature (in millicelcius) at which the fan
+                                speeds up (default 55000)
+        poe_fan_temp1_hyst      Temperature delta (in millicelcius) at which
+                                the fan slows down (default 5000)
 
 
 Name:   rpi-proto
